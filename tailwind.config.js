@@ -4,6 +4,6 @@ module.exports = {
 	important: true, // important in prod
 	plugins: [require('@tailwindcss/typography'), require('daisyui')],
 	daisyui: {
-		themes: ['corporate', 'dracula'],
+		themes: ['light', 'dark'],
 	},
 };
