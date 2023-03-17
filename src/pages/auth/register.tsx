@@ -15,14 +15,14 @@ const RegisterPage = () => {
 						<input type='password' className='input input-bordered w-full max-w-xl mb-4' />
 						<p>Password Again</p>
 						<input type='password' className='input input-bordered w-full max-w-xl mb-4' />
-						<button className='btn btn-primary'>Register!</button>
+						<button className='btn btn-primary capitalize'>Register!</button>
 						<div className='divider m-0' />
 						<div className='flex justify-between flex-wrap'>
-							<Link className='btn btn-ghost' href='/auth/login'>
+							<Link className='btn btn-ghost capitalize' href='/auth/login'>
 								<BiLogIn size={22} className='mr-2' />
 								Login
 							</Link>
-							<button className='btn btn-ghost'>
+							<button className='btn btn-ghost capitalize'>
 								<FaLock size={18} className='mr-2' />
 								Forgot Password?
 							</button>

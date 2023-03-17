@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { MdDarkMode } from 'react-icons/md';
-import { FaSun } from 'react-icons/fa';
+import { MdDarkMode, MdLightMode } from 'react-icons/md';
 import { IoMdMenu } from 'react-icons/io';
 import Link from 'next/link';
 
@@ -22,7 +21,7 @@ const Header = () => {
 				<div className='navbar-start'>
 					<div className='dropdown'>
 						<label tabIndex={0} className='btn btn-ghost'>
-							<IoMdMenu size={24} />
+							<IoMdMenu size={28} />
 						</label>
 						<ul
 							tabIndex={0}
@@ -44,12 +43,12 @@ const Header = () => {
 				<div className='navbar-end'>
 					<button
 						aria-label='Theme Toggle'
-						className='btn btn-square'
+						className='btn btn-square btn-ghost'
 						data-set-theme={check ? 'dark' : 'light'}
 						data-act-class='ACTIVECLASS'
 						onClick={() => setCheck(check ? false : true)}
 					>
-						{check ? <MdDarkMode size={32} /> : <FaSun size={32} />}
+						{check ? <MdDarkMode size={28} /> : <MdLightMode size={28} />}
 					</button>
 				</div>
 			</div>

@@ -2,6 +2,7 @@ import PaddingContainer from '@/components/paddingContainer';
 import Link from 'next/link';
 import { FaLock } from 'react-icons/fa';
 import { BiLogIn } from 'react-icons/bi';
+
 const LoginPage = () => {
 	return (
 		<PaddingContainer padding='lg'>
@@ -13,14 +14,14 @@ const LoginPage = () => {
 						<input type='text' className='input input-bordered w-full max-w-xl mb-4' />
 						<p>Password</p>
 						<input type='password' className='input input-bordered w-full max-w-xl mb-4' />
-						<button className='btn btn-primary'>Login!</button>
+						<button className='btn btn-primary capitalize'>Login!</button>
 						<div className='divider m-0' />
 						<div className='flex justify-between flex-wrap'>
-							<Link className='btn btn-ghost' href='/auth/register'>
+							<Link className='btn btn-ghost capitalize' href='/auth/register'>
 								<BiLogIn size={22} className='mr-2' />
 								Register
 							</Link>
-							<button className='btn btn-ghost'>
+							<button className='btn btn-ghost capitalize'>
 								<FaLock size={18} className='mr-2' />
 								Forgot Password?
 							</button>
