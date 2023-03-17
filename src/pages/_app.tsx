@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Header from '@/components/header';
 import { useEffect } from 'react';
 import { themeChange } from 'theme-change';
+import CustomToaster from '@/components/toaster';
 
 export default function App({ Component, pageProps }: AppProps) {
 	// ? Used to fix some hydration issue for themeChange
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			<Head>
 				<title>Next.js Template</title>
 			</Head>
+			<CustomToaster />
 			<Header />
 			<Component {...pageProps} />
 		</>
