@@ -13,8 +13,8 @@ const Header = () => {
 	}, []);
 
 	const NAVIGATION: { title: string; href: string }[] = [
-		{ title: 'Home', href: '/home' },
-		{ title: 'About', href: '/about' },
+		{ title: 'Login', href: '/auth/login' },
+		{ title: 'Register', href: '/auth/register' },
 	];
 	return (
 		<div className='sticky top-0 z-50'>
@@ -29,7 +29,7 @@ const Header = () => {
 							className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52'
 						>
 							{NAVIGATION.map(({ title, href }) => (
-								<Link className='btn btn-ghost text-left' key={title} href={href}>
+								<Link className='btn btn-ghost text-left capitalize' key={title} href={href}>
 									{title}
 								</Link>
 							))}

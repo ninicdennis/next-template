@@ -3,7 +3,7 @@ interface PaddingContainerProps {
 	padding: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
-const PaddingContainer = ({ children, padding }: PaddingContainerProps) => {
+const PaddingContainer = ({ children, padding = 'lg' }: PaddingContainerProps) => {
 	const paddingToNumber = () => {
 		switch (padding) {
 			case 'xs':
