@@ -11,28 +11,14 @@ const Header = () => {
 		if (theme === 'light') setCheck(true);
 	}, []);
 
-	const NAVIGATION: { title: string; href: string }[] = [
-		{ title: 'Login', href: '/auth/login' },
-		{ title: 'Register', href: '/auth/register' },
-	];
 	return (
 		<div className='sticky top-0 z-50'>
 			<div className='relative navbar bg-base-200 justify-between'>
 				<div className='navbar-start'>
 					<div className='dropdown'>
-						<label tabIndex={0} className='btn btn-ghost'>
+						<label tabIndex={0} htmlFor='my-drawer' className='btn btn-ghost drawer-button'>
 							<IoMdMenu size={28} />
 						</label>
-						<ul
-							tabIndex={0}
-							className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52'
-						>
-							{NAVIGATION.map(({ title, href }) => (
-								<Link className='btn btn-ghost text-left capitalize' key={title} href={href}>
-									{title}
-								</Link>
-							))}
-						</ul>
 					</div>
 				</div>
 				<div className='navbar-center'>
