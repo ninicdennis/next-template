@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { FaLock } from 'react-icons/fa';
 import { BiLogIn } from 'react-icons/bi';
 import { useForm } from 'react-hook-form';
+import supabase from 'lib/supabase';
+import { toast } from 'react-hot-toast';
+import { useRouter } from 'next/router';
 
 type FormData = {
 	email: string;
@@ -13,6 +16,7 @@ type FormData = {
 const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
 const RegisterPage = () => {
+	const router = useRouter();
 	const {
 		register,
 		watch,
@@ -20,8 +24,24 @@ const RegisterPage = () => {
 		handleSubmit,
 	} = useForm<FormData>();
 
-	const onSubmit = (data: FormData) => {
-		console.log('response', data);
+	const onSubmit = async (data: FormData) => {
+		const { email, password } = data;
+		await supabase.auth
+			.signUp({
+				email,
+				password,
+			})
+			.then((res) => {
+				if (res.error) {
+					toast.error(res.error.message);
+				} else {
+					toast.success('Signed up!');
+					router.replace('/');
+				}
+			})
+			.catch((err) => {
+				toast.error(err.message);
+			});
 	};
 
 	return (
