@@ -1,13 +1,28 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { IoMdClose } from 'react-icons/io';
+import { Session, User } from '@supabase/supabase-js';
 
-const Drawer = ({ mainContent }: { mainContent: JSX.Element | JSX.Element[] }) => {
+type DrawerProps = {
+	mainContent: JSX.Element | JSX.Element[];
+	user: User | null;
+	session: Session | null;
+};
+
+type Navigation = {
+	title: string;
+	href: string;
+	requireAuth?: boolean;
+	requireNoAuth?: boolean;
+}[];
+
+const Drawer = ({ mainContent, session }: DrawerProps) => {
 	const router = useRouter();
 
-	const NAVIGATION: { title: string; href: string }[] = [
-		{ title: 'Login', href: '/auth/login' },
-		{ title: 'Register', href: '/auth/register' },
+	const NAVIGATION: Navigation = [
+		{ title: 'Home', href: '/' },
+		{ title: 'Login', href: '/auth/login', requireNoAuth: true },
+		{ title: 'Register', href: '/auth/register', requireNoAuth: true },
 	];
 
 	return (
@@ -25,17 +40,20 @@ const Drawer = ({ mainContent }: { mainContent: JSX.Element | JSX.Element[] }) =
 						</label>
 					</div>
 					<div className='divider m-0' />
-					{NAVIGATION.map(({ title, href }) => (
-						<Link
-							className={`btn w-full btn-${
-								router.pathname === href ? 'secondary' : 'ghost'
-							} text-left capitalize self-baseline`}
-							key={title}
-							href={href}
-						>
-							{title}
-						</Link>
-					))}
+					{NAVIGATION.map(({ title, href, requireAuth, requireNoAuth }) => {
+						if ((requireAuth && session === null) || (requireNoAuth && session)) return null;
+						return (
+							<Link
+								className={`btn w-full btn-${
+									router.pathname === href ? 'secondary' : 'ghost'
+								} text-left capitalize self-baseline`}
+								key={title}
+								href={href}
+							>
+								{title}
+							</Link>
+						);
+					})}
 				</ul>
 			</div>
 		</div>

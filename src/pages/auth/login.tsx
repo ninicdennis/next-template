@@ -3,6 +3,11 @@ import Link from 'next/link';
 import { FaLock } from 'react-icons/fa';
 import { BiLogIn } from 'react-icons/bi';
 import { useForm } from 'react-hook-form';
+import { supabase } from '@/utils/supabase';
+import { toast } from 'react-hot-toast';
+import { Session } from '@supabase/supabase-js';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 type FormData = {
 	email: string;
@@ -11,15 +16,29 @@ type FormData = {
 
 const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
-const LoginPage = () => {
+const LoginPage = ({ session }: { session: Session | null }) => {
+	const router = useRouter();
 	const {
 		register,
 		formState: { errors },
 		handleSubmit,
 	} = useForm<FormData>();
 
-	const onSubmit = (data: FormData) => {
-		console.log('response', data);
+	useEffect(() => {
+		if (session !== null) {
+			router.push('/');
+		}
+	}, [session]);
+
+	const onSubmit = async ({ email, password }: FormData) => {
+		const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+		if (data.session) {
+			toast.success('Logged in!');
+		}
+
+		if (error) {
+			toast.error(`Error: ${error.message}`);
+		}
 	};
 
 	return (
